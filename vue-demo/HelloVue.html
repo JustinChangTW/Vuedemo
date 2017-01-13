@@ -7,19 +7,99 @@
 </head>
 
 <body>
-    <div>VUE</div>
-    <div v id="app">
+    <div>VUE</div><br />
+
+    <div>APP1</div>
+    <div v id="app-1">
         {{ message }}
+    </div><br />
+    <div>APP2</div>
+    <div v id="app-2">
+        {{ message }}
+    </div><br />
+    <div>App3</div>
+    <div id="app-3">
+        <!--v-if=>顯示與否判斷-->
+        <p v-if="seen">Now you see me</p>
+    </div>
+    <div>Tips:app3.seen = false 在Console使用此指令測試顯示情況</div><br />
+    <div>APP4(v-for)多筆顯示</div>
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+    </div>
+    <div>Tips:app4.todos.push({ text: 'New item' }) 在Console中使用會增加一列</div><br />
+    <div>APP5(v-on:click)與Method綁定</div>
+    <div id="app-5">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+    </div><br />
+    <div>APP6(v-model)與輸入框雙向綁定</div>
+    <div id="app-6">
+        <p>{{ message }}</p>
+        <input v-model="message">
     </div>
 </body>
 </html>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script>
-    var app = new Vue({
-        el: '#app',
+
+    //與元件綁定
+    var app1 = new Vue({
+        el: '#app-1',              //指定綁定ID
+        data: {
+            message: 'Hello Vue!' //Data（Model）設定
+        }
+    })
+
+    var app2 = new Vue({
+        el: '#app-2',
+        data: {
+            message: 'You loaded this page on ' + new Date() //取得時間與字串結合
+        }
+    })
+
+    var app3 = new Vue({
+        el: '#app-3',
+        data: {
+            seen: true     //true
+        }
+    })
+    //Tips:app3.seen = false 在Console使用此指令測試顯示情況
+
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            todos: [
+              { text: 'Learn JavaScript' },
+              { text: 'Learn Vue' },
+              { text: 'Build something awesome' }
+            ]
+        }
+    })
+    //Tips:app4.todos.push({ text: 'New item' }) 在Console中使用會增加一列
+
+    var app5 = new Vue({
+        el: '#app-5',
+        data: {
+            message: 'Hello Vue.js!'
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+
+    var app6 = new Vue({
+        el: '#app-6',
         data: {
             message: 'Hello Vue!'
         }
     })
+
 </script>
 
