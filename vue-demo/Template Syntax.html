@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <div><h1>模板语法</h1></div>
+
+    <div><h2>插值</h2></div>
+    <div><h3>文本</h3></div>
+    <div>DEMO 文字顯示</div>
+    <div id="text">
+        DEMO1： {{ message }}
+        <br />DEMO1-1：<span v-once>  {{ message }}  只綁定一次</span>
+    </div>
+    <div>Tips:text_demo.message = "改變成真"</div>
+    <div id="text" >
+        
+    </div>
+    <br />
+    <div><h3>纯 HTML</h3></div>
+    <div>DEMO 編釋HTML</div>
+    <div id="rawHtml" v-html="message">
+        <!--空白-->
+    </div>
+    <br />
+
+    <div><h3>属性</h3></div><br />
+    <div>DEMO Bind ID =>屬性綁定ID，會產生一組＜div id="dynamicId"＞＜/divID＞</div>
+    <div id="bind_id" v-bind:id="dynamicId"></div>
+    Tips：使用F12查看
+
+    <br />
+    <div>DEMO Bind disabled =>屬性綁定disabled => false:enabled true:disabled</div>
+    <button id="bind_disabled" v-bind:disabled="someDynamicCondition">button</button><br />
+    Tips：使用F12查看 <br />
+    vbind_disabled_demo.someDynamicCondition = false  // enabled <br />
+    vbind_disabled_demo.someDynamicCondition = true   //disabled <br />
+    <br />
+
+    <div><h3>使用 JavaScript 表达式</h3></div><br />
+    <div id="JavaScript">
+        {{ number + 1 }}
+        {{ ok ? 'YES' : 'NO' }}
+        {{ message.split('').reverse().join('') }}
+        <div v-bind:id="'list-' + id"></div>
+    </div>
+    <!-- 这是语句，不是表达式 -->
+    {{ var a = 1 }}  这是语句，不是表达式 <br />
+    <!-- 流控制也不会生效，请使用三元表达式 -->
+    {{ if (ok) { return message } }} 流控制也不会生效，请使用三元表达式<br />
+
+    <div><h2>指令</h2></div>
+    <div>條件判斷(true/false)</div>
+    <div id="">
+        <p v-if="ifseen">v-if  Now you see me</p>
+        <p v-show="showseen">v-show  Now you see me</p>
+    </div>
+
+</body>
+</html>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script>
+    var text_demo = new Vue({
+        el: "#text",
+        data: {
+            message: "<div><H5> 新年快樂</H5> </div>"
+        }
+    })
+
+    var rawHtml_demo = new Vue({
+        el:"#rawHtml",
+        data: {
+              message: "DEMO2:<div><span><H5>123新年</H5><br>快樂123</span></div>"
+        }
+    })
+
+    var vbind_id_demo= new Vue({
+        el: '#bind_id',
+        data: { dynamicId: 'what111111' }
+    })
+
+    var vbind_disabled_demo = new Vue({
+        el: '#bind_disabled',
+        data: { someDynamicCondition: false }
+    })
+
+    var JavaScript_demo = new Vue({
+        el: '#JavaScript',
+        data: {
+            number: 100,
+            ok: true,
+            message: "abcdefghijklmnopqrstuvwxyz",
+            id:"DEMO"
+        }
+    })
+
+    var 
+
+
+    
+</script>
+
