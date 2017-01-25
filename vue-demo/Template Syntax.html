@@ -53,10 +53,21 @@
     {{ if (ok) { return message } }} 流控制也不会生效，请使用三元表达式<br />
 
     <div><h2>指令</h2></div>
-    <div>條件判斷(true/false)</div>
+    <div>條件判斷(true/false)：</div>
+    指令（Directives）是带有 v- 前缀的特殊属性。指令属性的值预期是单一 JavaScript 表达式
     <div id="">
-        <p v-if="ifseen">v-if  Now you see me</p>
-        <p v-show="showseen">v-show  Now you see me</p>
+        <p v-if="seen">v-if  Now you see me</p>
+        <p v-show="seen">v-show  Now you see me</p>
+    </div>
+    Tips:directives_demo.seen = false
+
+    <div><h2>過濾器</h2></div>
+    <div>過濾器(filter)</div>
+    <div id="filter_demo1">
+        {{ Msg | capitalize }}
+        {{ 'abc' | uppercase }}        
+        {{ 'abc' | currency }}
+        {{ 'abc' | json }}
     </div>
 
 </body>
@@ -97,7 +108,20 @@
         }
     })
 
-    var 
+    var directives_demo = new Vue({
+        el: '#Directive',
+        data: {
+            seen:true
+        }
+    })
+
+    var filter_demo1 = new Vue({
+        el: '#filter_demo1',
+        data: {
+            Msg:'abcdefg'
+        }
+    })
+
 
 
     
